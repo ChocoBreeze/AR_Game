@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class GameBarManager : MonoBehaviour
 {
-    public float timeInterval = 0.1f;
+    public float timeInterval = 0.1f; // 원래 값 = 0.1f
     public float failureTime = 5f;
     public float successTime = 3f;
     public float z;
@@ -151,12 +151,14 @@ public class GameBarManager : MonoBehaviour
             //right, top
             goalSectionIndicatorRect.offsetMax = new Vector2(-((width * (1f - finishPortion))), -(0));
 
+            UnityEngine.Debug.Log("numOfInterval : " + numOfInterval);
         }
     }
 
     void setGoalInterval()
     {
-        int tmp = Random.Range(0, numOfInterval);
+        // int tmp = Random.Range(0, numOfInterval); // 원래 코드
+        int tmp = 10;
         if (goalInterval.Count == 0)
         {
             goalInterval.Add(-1f + tmp * timeInterval);

@@ -34,9 +34,9 @@ public class ProgressBar : MonoBehaviour
     private void OnEnable()
     {
         now_Gaming = true;
-        slider.value = 0.2f; // 시작점 조절
+        slider.value = 0.6f; // 시작점 조절
         lossSpeed = 0.1f;
-        fillSpeed = 0.4f;
+        fillSpeed = 0.8f;
         targetProgress = 1.0f;
         result = 0;
         failureTime = 10;
