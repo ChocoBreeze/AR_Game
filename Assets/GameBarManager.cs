@@ -37,8 +37,7 @@ public class GameBarManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        correctWatch = new Stopwatch();
-        inCorrectWatch = new Stopwatch();
+        
         numOfInterval = (int)(2 / timeInterval);
         //UnityEngine.Debug.Log(zText.text);
         //zText.text = "asdasd";
@@ -58,6 +57,8 @@ public class GameBarManager : MonoBehaviour
         indicatorSize = 10;
         width = GetComponent<RectTransform>().rect.width;
         now_Gaming = true;
+        correctWatch = new Stopwatch();
+        inCorrectWatch = new Stopwatch();
         inCorrectWatch.Reset();
         correctWatch.Reset();
         numOfFailure = 0;

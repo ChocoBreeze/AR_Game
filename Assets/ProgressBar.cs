@@ -28,7 +28,7 @@ public class ProgressBar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        watch = new Stopwatch();
+        
     }
 
     private void OnEnable()
@@ -40,6 +40,7 @@ public class ProgressBar : MonoBehaviour
         targetProgress = 1.0f;
         result = 0;
         failureTime = 10;
+        watch = new Stopwatch();
         watch.Restart();
     }
 
