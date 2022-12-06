@@ -18,10 +18,12 @@ public class GameManager : MonoBehaviour
     public GameObject spawnPrefab;
 
     public GameObject Canvas; // https://artiper.tistory.com/114 (setActive 설정)
+    public List<GameObject> cameras = new List<GameObject> { };
 
     private GameObject spawnedObject;
     private bool gameStart = false;
     private bool settingGameStart = false;
+    private List<CameraManager> cameraManagers = new List<CameraManager> { };
 
     List<ARRaycastHit> m_Hits = new List<ARRaycastHit>();
 
@@ -39,6 +41,7 @@ public class GameManager : MonoBehaviour
         m_PlaneManager = GetComponent<ARPlaneManager>();
 
 
+
         Canvas.transform.Find("Progress Bar").gameObject.SetActive(false); // 낚시 아니니 canvas 끄기
         Canvas.transform.Find("Game Bar").gameObject.SetActive(false);
 
@@ -47,6 +50,15 @@ public class GameManager : MonoBehaviour
         do_Tilt_game = false;
         do_Touch_game = false;
 
+    }
+
+    void Awake()
+    {
+        for (int i = 0; i < cameras.Count; i++)
+        {
+            Debug.Log(cameras.Count.ToString());
+            cameraManagers.Add(cameras[i].GetComponent<CameraManager>());
+        }
     }
 
     // Update is called once per frame
@@ -179,6 +191,7 @@ public class GameManager : MonoBehaviour
             if (Canvas.GetComponentInChildren<ProgressBar>().result == 1)
             {
                 // 성공 처리
+                cameraManagers[0].showUp();
             }
             else
             {

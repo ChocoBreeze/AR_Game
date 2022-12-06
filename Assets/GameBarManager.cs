@@ -34,6 +34,18 @@ public class GameBarManager : MonoBehaviour
     public int result; // 실패 = 0, 성공 = 1
     public bool now_Gaming = false;
 
+    // Start is called before the first frame update
+    void Start()
+    {
+        correctWatch = new Stopwatch();
+        inCorrectWatch = new Stopwatch();
+        numOfInterval = (int)(2 / timeInterval);
+        //UnityEngine.Debug.Log(zText.text);
+        //zText.text = "asdasd";
+        //UnityEngine.Debug.Log(zText.text);
+        setGoalInterval();
+    }
+
     private void Awake()
     {
         // width = GetComponent<RectTransform>().rect.width;
@@ -53,17 +65,7 @@ public class GameBarManager : MonoBehaviour
         result = 0;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        correctWatch = new Stopwatch();
-        inCorrectWatch = new Stopwatch();
-        numOfInterval = (int)(2 / timeInterval);
-        //UnityEngine.Debug.Log(zText.text);
-        //zText.text = "asdasd";
-        //UnityEngine.Debug.Log(zText.text);
-        setGoalInterval();
-    }
+
 
     // Update is called once per frame
     void Update()
