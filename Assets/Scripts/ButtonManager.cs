@@ -20,11 +20,11 @@ public class ButtonManager : MonoBehaviour
         gameManager= gameManagerObj.GetComponent<GameManager>();
     }
 
+    // gamemanager ²¯´Ù ÄÑ±â
     public void resetGameManager()
     {
         gameManager.enabled = false;
         gameManager.enabled = true;
-
     }
 
     // Update is called once per frame

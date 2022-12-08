@@ -61,6 +61,7 @@ public class GameBarManager : MonoBehaviour
         inCorrectWatch.Reset();
         correctWatch.Reset();
         numOfFailure = 0;
+        numOfInterval = (int)(2 / timeInterval);
         setGoalInterval();
         result = 0;
     }
@@ -164,5 +165,6 @@ public class GameBarManager : MonoBehaviour
     public void SetDifficulty(float new_difficulty)
     {
         timeInterval = new_difficulty;
+        numOfInterval = (int)(2 / timeInterval);
     }
 }

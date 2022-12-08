@@ -13,6 +13,7 @@ public class ChangeButton : MonoBehaviour
         touchActive = true;
     }
 
+    // bowl <-> gamemanager (터치 제어)
     public void ChangeState()
     {
         touchActive = !touchActive; // 반전

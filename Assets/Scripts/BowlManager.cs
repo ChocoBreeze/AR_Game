@@ -53,7 +53,6 @@ public class BowlManager : MonoBehaviour
         // we need to count both the touches, store it somewhere, measure the distance between pinch
         // and scale gameobject depending on the pinch
         // we also need to ignore if the pinch distance is small (cases where two touches are registered accidently)
-
         if(Input.touchCount == 2)
         {
             var touchZero = Input.GetTouch(0);
@@ -135,6 +134,7 @@ public class BowlManager : MonoBehaviour
 
     }
 
+    // 랜덤한 위치벡터 리턴(Collider 내부에서)
     Vector3 Return_RandomPosition()
     {
         Vector3 originPosition = rangeObject.transform.position; // 구의 중심
@@ -156,6 +156,7 @@ public class BowlManager : MonoBehaviour
         return ret_Vector;
     }   
     
+    // 랜덤한 회전벡터 리턴
     Vector3 Return_RandomRotation()
     {
         float X = Random.Range(-90, 91);
@@ -164,7 +165,7 @@ public class BowlManager : MonoBehaviour
         return new Vector3(X, Y, Z);
     }
 
-
+    // 어항에 물고기 소환
     public void Spawn_Fish(int index)
     {
         var temp = Instantiate(fish_List[index], Return_RandomPosition(), Quaternion.Euler(Return_RandomRotation())) as GameObject;
@@ -174,6 +175,7 @@ public class BowlManager : MonoBehaviour
         spawn_Fishes.Add(temp);
     }
 
+    // 디버그용 소환
     private void SpawnForDebug()
     {
         int index = Random.Range(0, 3);
