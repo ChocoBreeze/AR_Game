@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Bowl
   layers:
   - Default
   - TransparentFX
@@ -36,8 +37,14 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Check
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 2294136413
+    locked: 0
+  - name: Check
+    uniqueID: 1206401233
     locked: 0

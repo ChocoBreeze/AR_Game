@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class GameBarManager : MonoBehaviour
 {
-    public float timeInterval = 0.1f; // 원래 값 = 0.1f
+    public float timeInterval = 0.1f; // 난이도 조절
     public float failureTime = 5f;
     public float successTime = 3f;
     public float z;
@@ -66,12 +66,9 @@ public class GameBarManager : MonoBehaviour
         result = 0;
     }
 
-
-
     // Update is called once per frame
     void Update()
     {
-
         if (!now_Gaming) { return; }
 
         z = Input.acceleration.z;
@@ -108,9 +105,7 @@ public class GameBarManager : MonoBehaviour
                 now_Gaming = false;
 
             }
-
             // numOfFailureText.text = numOfFailure.ToString();
-
         }
         else if (correctWatch.Elapsed.TotalMilliseconds > successTime * 1000)
         {
@@ -118,7 +113,6 @@ public class GameBarManager : MonoBehaviour
             result = 1;
             now_Gaming = false;
             // numOfSuccessText.text = numOfSuccess.ToString();
-
         }
 
         //set zIndicator pos
@@ -133,13 +127,11 @@ public class GameBarManager : MonoBehaviour
             //right, top
             zIndicatorRect.offsetMax = new Vector2(-((width * (1f - zPortion)) - indicatorSize), -(0));
             // debug2.text = ((width * (1f - zPortion)) - indicatorSize).ToString();
-
         }
 
         //set goalSectionIndicator pos
 
         {
-
             float sectionStart = goalInterval[0];
             float sectionFinish = goalInterval[1];
             float startPortion = (sectionStart + 1f) / 2;
@@ -157,20 +149,16 @@ public class GameBarManager : MonoBehaviour
 
     void setGoalInterval()
     {
-        // int tmp = Random.Range(0, numOfInterval); // 원래 코드
-        int tmp = 10;
+        int tmp = Random.Range(0, numOfInterval); // 원래 코드
         if (goalInterval.Count == 0)
         {
             goalInterval.Add(-1f + tmp * timeInterval);
             goalInterval.Add(goalInterval[0] + timeInterval);
-
         }
         else
         {
             goalInterval[0] = -1f + tmp * timeInterval;
             goalInterval[1] = goalInterval[0] + timeInterval;
         }
-
     }
-
 }
