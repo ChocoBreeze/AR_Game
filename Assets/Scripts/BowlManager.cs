@@ -20,6 +20,7 @@ public class BowlManager : MonoBehaviour
     // https://velog.io/@gkswh4860/Unity-%ED%8A%B9%EC%A0%95-%EB%B2%94%EC%9C%84-%EB%82%B4%EC%97%90%EC%84%9C-%EB%9E%9C%EB%8D%A4%ED%95%9C-%EC%9C%84%EC%B9%98%EC%97%90-%EC%98%A4%EB%B8%8C%EC%A0%9D%ED%8A%B8-%EC%8A%A4%ED%8F%B0%ED%95%98%EA%B8%B0
     public GameObject rangeObject;
     SphereCollider rangeCollider;
+    // BoxCollider rangeCollider;
 
     private float initialDistance;
     private Vector3 initialScale;
@@ -30,9 +31,10 @@ public class BowlManager : MonoBehaviour
     private void Awake()
     {
         m_RaycastManager= FindObjectOfType<ARRaycastManager>();
+        // rangeCollider = rangeObject.GetComponent<BoxCollider>();
         rangeCollider = rangeObject.GetComponent<SphereCollider>();
         arCamera = FindObjectOfType<Camera>();
-        // text.text = "Start!!";
+        // text.text = "";
     }
     // Start is called before the first frame update
     void Start()
@@ -95,14 +97,14 @@ public class BowlManager : MonoBehaviour
                 RaycastHit hitobj;
                 ray = arCamera.ScreenPointToRay(touch.position);
 
-                //text.text = "Touch(One)";
+                // text.text = "Touch(One)";
                 //Ray를 통한 오브젝트 인식
                 if (Physics.Raycast(ray, out hitobj))
                 {
                     //터치한 곳에 오브젝트 이름이 Cube를 포함하면
                     if (hitobj.collider.name.Contains("Bowl"))
                     {
-                        //text.text = "Touch(Bowl On)";
+                        // text.text = "Touch(Bowl On)";
                         //그 오브젝트를 SelectObj에 놓는다 //터치하고 있는다
                         Touched = true;
                     }
@@ -116,7 +118,7 @@ public class BowlManager : MonoBehaviour
             //터치가 끝나면 터치 끝.
             if (touch.phase == TouchPhase.Ended)
             {
-                //text.text = "Touch(Bowl Off)";
+                // text.text = "Touch(Bowl Off)";
                 Touched = false;
             }
 
@@ -125,7 +127,7 @@ public class BowlManager : MonoBehaviour
                 //터치 시 해당 오브젝트 위치 초기화
                 if (Touched)
                 {
-                    //text.text = "Move(Bowl)";
+                    // text.text = "Move(Bowl)";
                     gameObject.transform.position = m_Hits[0].pose.position;
                 }
             }
@@ -137,21 +139,27 @@ public class BowlManager : MonoBehaviour
     // 랜덤한 위치벡터 리턴(Collider 내부에서)
     Vector3 Return_RandomPosition()
     {
-        Vector3 originPosition = rangeObject.transform.position; // 구의 중심
-        // Debug.Log("originPos : " + originPosition);
-        float radius = rangeCollider.radius * gameObject.transform.localScale.x; // 콜라이더의 반지름 * Scale Factor
-        // Debug.Log("radius :" + radius);
+        Vector3 originPosition = rangeObject.transform.position; // Box의 중심
+        //Vector3 parent_Scale = gameObject.transform.localScale;
+        //float range_X = rangeCollider.size.x / 2 * parent_Scale.x; // 중심 ~ 끝 거리
+        //float range_Y = rangeCollider.size.y / 2 * parent_Scale.y;
+        //float range_Z = rangeCollider.size.z / 2 * parent_Scale.z;
 
+        //float X = Random.Range(-range_X, range_X);
+        //float Y = Random.Range(-range_Y, range_Y);
+        //float Z = Random.Range(-range_Z, range_Z);
+
+        float radius = rangeCollider.radius * gameObject.transform.localScale.x; // 콜라이더의 반지름 * Scale Factor
         float X = Random.Range(-radius, radius);
         float max_Y = Mathf.Sqrt(Mathf.Pow(radius, 2) - Mathf.Pow(X, 2));
         float Y = Random.Range(-max_Y, max_Y);
         float max_Z = Mathf.Sqrt(Mathf.Pow(radius, 2) - Mathf.Pow(X, 2) - Mathf.Pow(Y, 2));
         float Z = Random.Range(-max_Z, max_Z);
+
         // Debug.Log("X : " + X + " Y : " + Y + " Z : " + Z);
         // Debug.Log("X^2 + Y^2 + Z^2 : " + (Mathf.Pow(X, 2) + Mathf.Pow(Y, 2) + Mathf.Pow(Z, 2)));
 
         Vector3 ret_Vector = originPosition + new Vector3(X, Y, Z);
-        // Vector3 randSpherePos = Random.insideUnitSphere; // 반지름이 1인 경우에 반지름이 1인 구 안에서 랜덤 위치 이용 가능
         // Debug.Log("Final Pos : " + ret_Vector);
         return ret_Vector;
     }   

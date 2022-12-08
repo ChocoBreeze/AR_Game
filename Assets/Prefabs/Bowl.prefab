@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1286949266}
-  - component: {fileID: 1286949265}
+  - component: {fileID: 8014777767299516962}
   m_Layer: 0
   m_Name: RespawnRange
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 8549810891568333340}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &1286949265
+--- !u!135 &8014777767299516962
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,9 +41,9 @@ SphereCollider:
   m_GameObject: {fileID: 1286949264}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.45
+  m_Radius: 0.4
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5765212206034684076
 GameObject:
@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 4710460078411296276}
   - component: {fileID: 4037764887436919418}
   - component: {fileID: -4815533056002581752}
+  - component: {fileID: 7887062021062097205}
   m_Layer: 0
   m_Name: Bowl
   m_TagString: Bowl
@@ -142,10 +143,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5adc2a4742496b24c857ff7384733c1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_RaycastManager: {fileID: 0}
+  changebutton: {fileID: 0}
+  arCamera: {fileID: 0}
   fish_List:
   - {fileID: 4882801322305221464, guid: c87fa0d6180121d42a09aff518a98e33, type: 3}
   - {fileID: 4882801322305221464, guid: 471bab982c3397c44b7629e2ae7e124f, type: 3}
   - {fileID: 4882801322305221464, guid: 6f272e377bc05644489c1c84a97efa44, type: 3}
-  changebutton: {fileID: 0}
   spawn_Fishes: []
   rangeObject: {fileID: 1286949264}
+  text: {fileID: 0}
+--- !u!135 &7887062021062097205
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5765212206034684076}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
