@@ -32,12 +32,12 @@ public class BowlManager : MonoBehaviour
         m_RaycastManager= FindObjectOfType<ARRaycastManager>();
         rangeCollider = rangeObject.GetComponent<SphereCollider>();
         arCamera = FindObjectOfType<Camera>();
-        text.text = "Start!!";
+        // text.text = "Start!!";
     }
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("SpawnForDebug", 0f, 2f);
+        // InvokeRepeating("SpawnForDebug", 0f, 2f);
     }
 
     // Update is called once per frame

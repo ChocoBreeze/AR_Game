@@ -161,4 +161,9 @@ public class GameBarManager : MonoBehaviour
             goalInterval[1] = goalInterval[0] + timeInterval;
         }
     }
+
+    public void SetDifficulty(float new_difficulty)
+    {
+        timeInterval = new_difficulty;
+    }
 }

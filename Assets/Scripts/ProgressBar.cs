@@ -39,7 +39,7 @@ public class ProgressBar : MonoBehaviour
         fillSpeed = 0.8f;
         targetProgress = 1.0f;
         result = 0;
-        failureTime = 10;
+        failureTime = 10; // 10초
         watch = new Stopwatch();
         watch.Restart();
     }
@@ -65,7 +65,7 @@ public class ProgressBar : MonoBehaviour
                 particleSys.Play();
             }
         }
-        if (slider.value > 0.99f) // 성공
+        if (slider.value > 0.98f) // 성공
         {
             now_Gaming = false;
             result = 1;
@@ -84,5 +84,10 @@ public class ProgressBar : MonoBehaviour
         slider.value += touchCount * fillSpeed * Time.deltaTime;
     }
 
+    public void SetDifficulty(float loss_s, float fill_s)
+    {
+        lossSpeed = loss_s;
+        fillSpeed = fill_s;
+    }
 
 }

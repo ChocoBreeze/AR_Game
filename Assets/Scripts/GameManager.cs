@@ -25,12 +25,13 @@ public class GameManager : MonoBehaviour
     private bool settingGameStart = false;
 
     public List<GameObject> cameras = new List<GameObject> { };
-    private List<CameraManager> cameraManagers = new List<CameraManager> { };
 
     public GameObject Bowl = null; // spawn된 어항 저장
     public GameObject[] fish_List; // 낚을 수 있는 물고기 리스트
 
     List<ARRaycastHit> m_Hits = new List<ARRaycastHit>();
+
+    private int fish_Index;
 
     public ChangeButton changebutton;
 
@@ -62,11 +63,7 @@ public class GameManager : MonoBehaviour
     {
         foreach (var plane in m_PlaneManager.trackables)
         {
-            
-            
-                plane.gameObject.SetActive(false);
-                //t.GetComponent<MeshRenderer>().material = null;
-            
+            plane.gameObject.SetActive(false);
         }
         m_RaycastManager = GetComponent<ARRaycastManager>();
         m_PlaneManager = GetComponent<ARPlaneManager>();
@@ -107,11 +104,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        //for (int i = 0; i < cameras.Count; i++)
-        //{
-        //    // Debug.Log(cameras.Count.ToString());
-        //    cameraManagers.Add(cameras[i].GetComponent<CameraManager>());
-        //}
+        
     }
 
     // Update is called once per frame
@@ -212,8 +205,10 @@ public class GameManager : MonoBehaviour
                 else if (gameStart)
                 {
                     Canvas.transform.Find("Game Bar").gameObject.SetActive(true);
+                    fish_Index = Random.Range(0, fish_List.Length); // [0, fish_List.Length)
                     do_Tilt_game = true;
                     gameStart = false;
+                    SetDifficultyTilt(); // tilt 게임 난이도 설정(물고기의 종류에 따라..)
                 }
                 else
                 {
@@ -232,6 +227,7 @@ public class GameManager : MonoBehaviour
                 do_Tilt_game = false;
 
                 Canvas.transform.Find("Progress Bar").gameObject.SetActive(true); // 터치게임 시작.
+                SetDifficultyTouch(); // Touch 게임 난이도 설정(물고기의 종류에 따라..)
                 return;
             }
             else // 실패
@@ -249,7 +245,7 @@ public class GameManager : MonoBehaviour
             if (Canvas.GetComponentInChildren<ProgressBar>().result == 1 && !finish_game)
             {
                 // 성공 처리
-                var fish_Index = Random.Range(0, fish_List.Length); // [0, fish_List.Length)
+                // var fish_Index = Random.Range(0, fish_List.Length); // [0, fish_List.Length)
                 
                 // 낚시 성공(어떤 물고기를 잡았는지 2초간 표시)
                 StartCoroutine(Show_Fish(fish_Index));
@@ -274,6 +270,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // 바로 tilt 게임을 시작하는 것이 아닌 입질을 기다리는 느낌을 주기 위해
     void setGameStart()
     {
         if (Random.Range(1, 11) < 3) // 확률로 시작
@@ -285,6 +282,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // 낚시 성공 시 어떤 물고기를 잡았는지 잠깐 보여주는 역할(Plane 뒤로 가는 오류는 미해결..)
     IEnumerator Show_Fish(int index)
     {
         Canvas.transform.Find("Spawn Point").Find("SuccessText").gameObject.SetActive(true);
@@ -317,5 +315,45 @@ public class GameManager : MonoBehaviour
         finish_game = false;
     }
 
+    // tiltgame 난이도 설정
+    private void SetDifficultyTilt() 
+    {
+        var difficulty = 0f;
+        if(fish_Index == 0)
+        {
+            difficulty = 0.4f;
+        }
+        else if(fish_Index == 1) 
+        {
+            difficulty = 0.2f;
+        }
+        else if(fish_Index == 2)
+        {
+            difficulty = 0.1f;
+        }
+        Canvas.GetComponentInChildren<GameBarManager>().SetDifficulty(difficulty);
+    }
+
+    // touchgame 난이도 설정
+    private void SetDifficultyTouch()
+    {
+        float lossS = 0f, fillS = 0f;
+        if (fish_Index == 0)
+        {
+            lossS = 0.1f;
+            fillS = 0.8f;
+        }
+        else if (fish_Index == 1)
+        {
+            lossS = 0.3f;
+            fillS = 0.8f;
+        }
+        else if (fish_Index == 2)
+        {
+            lossS = 0.3f;
+            fillS = 0.6f;
+        }
+        Canvas.GetComponentInChildren<ProgressBar>().SetDifficulty(lossS, fillS);
+    }
 }
 
