@@ -50,7 +50,7 @@ public class ProgressBar : MonoBehaviour
     void Update()
     {
 
-        //Debug.Log("slider.value : " + slider.value);
+        // UnityEngine.Debug.Log("slider.value : " + slider.value);
         //Debug.Log("loss Speed : " + lossSpeed);
         if (slider.value > 0)
         {
@@ -67,6 +67,8 @@ public class ProgressBar : MonoBehaviour
         }
         if (slider.value > 0.98f) // ¼º°ø
         {
+            //UnityEngine.Debug.Log("now_Gaming : " + now_Gaming);
+            //UnityEngine.Debug.Log("result : " + result);
             now_Gaming = false;
             result = 1;
         }

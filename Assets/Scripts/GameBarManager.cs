@@ -37,7 +37,6 @@ public class GameBarManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
         numOfInterval = (int)(2 / timeInterval);
         //UnityEngine.Debug.Log(zText.text);
         //zText.text = "asdasd";

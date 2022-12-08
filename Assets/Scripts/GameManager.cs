@@ -44,19 +44,19 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_RaycastManager = GetComponent<ARRaycastManager>();
-        m_PlaneManager = GetComponent<ARPlaneManager>();
+        //m_RaycastManager = GetComponent<ARRaycastManager>();
+        //m_PlaneManager = GetComponent<ARPlaneManager>();
 
-        Canvas.transform.Find("Progress Bar").gameObject.SetActive(false); // 낚시 아니니 canvas 끄기
-        Canvas.transform.Find("Game Bar").gameObject.SetActive(false);
+        //Canvas.transform.Find("Progress Bar").gameObject.SetActive(false); // 낚시 아니니 canvas 끄기
+        //Canvas.transform.Find("Game Bar").gameObject.SetActive(false);
 
-        is_Ocean = false;
-        throw_Bob = false;
-        do_Tilt_game = false;
-        do_Touch_game = false;
-        finish_game = false;
+        //is_Ocean = false;
+        //throw_Bob = false;
+        //do_Tilt_game = false;
+        //do_Touch_game = false;
+        //finish_game = false;
 
-        Bowl = null;
+        //Bowl = null;
     }
 
     private void OnDisable()
@@ -249,7 +249,7 @@ public class GameManager : MonoBehaviour
                 
                 // 낚시 성공(어떤 물고기를 잡았는지 2초간 표시)
                 StartCoroutine(Show_Fish(fish_Index));
-                finish_game = true;
+                finish_game = true; // 물고기가 여러 번 표시되는 오류 해결
 
                 // 어항 처리
                 if (Bowl != null)
