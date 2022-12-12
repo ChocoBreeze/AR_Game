@@ -3,7 +3,7 @@
 ## 2022 2학기 게임 프로그래밍 (COSE434)
 
 ## Demonstration Video(Youtube)
-- [Youtube Link](https://www.youtube.com/watch?v=4CwR6Nl2Axg, "유튜브 시연영상")
+### [Youtube Link](https://www.youtube.com/watch?v=4CwR6Nl2Axg, "유튜브 시연영상")
 
 ## Unity Version
     2012.3.9f1
@@ -38,4 +38,4 @@
     AR 게임이라고 제작은 해놓았지만, 실상 AR과 관련된 기능은 평면 인식 뿐이다.
     카메라 화면을 보는 시점에 따라 뭔가 다양한 변화를 주었으면 좋을 것 같다는 이야기.
     예시로 앵그리버드 AR 처럼 건물들이 소환되고, 보는 방향에 따라 다른 공략이나 화면이 나온다면 더 좋을 것 같다는 이야기
-   ->    [Youtube Link](https://www.youtube.com/watch?v=7VdtUcdK3LI, "참고용 앵그리버드 링크")
+### [Youtube Link](https://www.youtube.com/watch?v=7VdtUcdK3LI, "참고용 앵그리버드 링크")
